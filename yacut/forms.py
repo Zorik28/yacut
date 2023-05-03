@@ -2,6 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, URLField
 from wtforms.validators import DataRequired, Length, Optional, Regexp, URL
 
+from .constants import ONLY_NUMBERS_AND_ENGLISH
+
 
 class URLMapForm(FlaskForm):
     original_link = URLField(
@@ -16,7 +18,7 @@ class URLMapForm(FlaskForm):
         validators=[
             Length(1, 16),
             Regexp(
-                regex=r'^[a-zA-Z0-9]+$',
+                regex=ONLY_NUMBERS_AND_ENGLISH,
                 message='You can only use numbers and English letters!'
             ),
             Optional()

@@ -1,15 +1,11 @@
-from datetime import datetime
 from secrets import token_urlsafe
 
-from flask import render_template
+from flask import render_template, redirect
 
 from . import app, db
+from .constants import HYPHEN, UNDERSCORE
 from .forms import URLMapForm
 from .models import URLMap
-
-
-UNDERSCORE = '_'
-HYPHEN = '-'
 
 
 def get_unique_short_id() -> str:
@@ -23,7 +19,6 @@ def get_unique_short_id() -> str:
 
 @app.route('/', methods=['GET', 'POST'])
 def index_view():
-    year = datetime.now().year
     form = URLMapForm()
     if form.validate_on_submit():
         url = URLMap(
@@ -36,5 +31,11 @@ def index_view():
         )
         db.session.add(url)
         db.session.commit()
-        return render_template('index.html', form=form, year=year, url=url)
-    return render_template('index.html', form=form, year=year)
+        return render_template('index.html', form=form, url=url)
+    return render_template('index.html', form=form)
+
+
+@app.route('/<string:short>')
+def follow_short_url(short: str):
+    original_link = URLMap.query.filter_by(short=short).first_or_404()
+    return redirect(original_link.original)

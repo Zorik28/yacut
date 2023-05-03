@@ -47,7 +47,11 @@
           {% if url %}
             <h5 class="text-center">
               Your new link is ready:
-              <p><a href="{{ url.short }}">{{ url.short }}</a></p>
+              <p>
+                <a href="{{ url_for('follow_short_url', short=url.short, _external=True) }}">
+                  {{ url_for('follow_short_url', short=url.short, _external=True) }}
+                </a>
+              </p>
             </h5>
           {% endif %}
           </p>
