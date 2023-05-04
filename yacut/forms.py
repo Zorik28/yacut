@@ -10,7 +10,7 @@ class URLMapForm(FlaskForm):
         'Long link',
         validators=[
             DataRequired('Required field!'),
-            URL(message="Damn, pal! This is not a link")
+            URL(message="Damn, pal! This is not a link.")
         ]
     )
     custom_id = StringField(
@@ -19,7 +19,7 @@ class URLMapForm(FlaskForm):
             Length(1, 16),
             Regexp(
                 regex=ONLY_NUMBERS_AND_ENGLISH,
-                message='You can only use numbers and English letters!'
+                message='You can only use numbers and English letters.'
             ),
             Optional()
         ]

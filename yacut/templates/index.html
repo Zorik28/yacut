@@ -30,6 +30,15 @@
                 {% endfor %}
               {% endif %}
             </p>
+            <p class="py-3 mb-3" style="color:red">
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  {% for message in messages %}
+                    {{ message }}
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            </p>
               {{ form.submit(class="btn btn-primary") }}
           </form>
         </div>
