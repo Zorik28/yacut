@@ -14,4 +14,4 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 
-from . import error_handlers, views
+from . import api_views, error_handlers, views

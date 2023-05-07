@@ -32,7 +32,7 @@ def index_view():
             # When user left the custom_id field empty
             form.custom_id.data = get_unique_short_id()
         if not is_unique(form.custom_id.data):
-            flash('This short link already exists, try creating another one.')
+            flash(f'Имя {form.custom_id.data} уже занято!')
             return render_template('index.html', form=form)
         url = URLMap(
             original=form.original_link.data, short=form.custom_id.data
