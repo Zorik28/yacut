@@ -1,10 +1,11 @@
 # YaCut
 
 ### Technology
-- Python           3.9.6
-- Flask            2.0.2
-- Flask-SQLAlchemy 2.5.1
-- Flask-WTF        1.0.0
+|-----------------|------|
+| Python          | 3.9.6|
+| Flask           | 2.0.2|
+| Flask-SQLAlchemy| 2.5.1|
+| Flask-WTF       | 1.0.0|
 
 
 ### Project run on local server
@@ -27,3 +28,11 @@
 
 5. Run tha YaCut!
 ```flask run```
+
+
+### Example
+
+
+#### Author
+Karapetian Zorik   
+Russian Federation, St. Petersburg, Kupchino.
