@@ -34,7 +34,7 @@ Just cut them off!
 
 
 ### Example
-**Create a new short link:**
+**Create a new short link:**    
 _POST .../api/id_ 
 ``` 
     {
