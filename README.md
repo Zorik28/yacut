@@ -1,8 +1,8 @@
 # YaCut
 
 ### Description
-If you are tired of long links, is it hard for you to remember them?
-Then just cut them off!
+If you are tired of long links, is it hard for you to remember them?    
+Just cut them off!
 
 ### Technologies
 - Python           3.9.6
@@ -34,8 +34,9 @@ Then just cut them off!
 
 
 ### Example
-**Create a new short link: _POST .../api/id_**    
+**Create a new short link:**    
 ```
+_POST .../api/id_    
     {
         "url": "https://github.com/Zorik28/yacut/blob/master/README.md"
     }
