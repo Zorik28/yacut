@@ -1,5 +1,9 @@
 # YaCut
 
+### Description
+If you are tired of long links, is it hard for you to remember them?
+Then just cut them off!
+
 ### Technologies
 - Python           3.9.6
 - Flask            2.0.2
@@ -30,8 +34,7 @@
 
 
 ### Example
-**POST-request: Create a new short link.**
-_POST .../api/id_
+**Create a new short link: _POST .../api/id_**    
 ```
     {
         "url": "https://github.com/Zorik28/yacut/blob/master/README.md"
@@ -47,6 +50,6 @@ _POST .../api/id_
 ```
 
 
-#### Author
+### Author
 Karapetian Zorik   
 Russian Federation, St. Petersburg, Kupchino.
