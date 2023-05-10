@@ -17,10 +17,12 @@
 ```flask shell```
    
 4. Create the table:
-```>>> from yacut import db```
 
 
-```>>> db.create_all()```
+   ```>>> from yacut import db```
+
+
+   ```>>> db.create_all()```
 
 5. Run tha YaCut!
 ```flask run```
