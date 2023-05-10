@@ -1,11 +1,10 @@
 # YaCut
 
-### Technology
-|-----------------|------|
-| Python          | 3.9.6|
-| Flask           | 2.0.2|
-| Flask-SQLAlchemy| 2.5.1|
-| Flask-WTF       | 1.0.0|
+### Technologies
+- Python           3.9.6
+- Flask            2.0.2
+- Flask-SQLAlchemy 2.5.1
+- Flask-WTF        1.0.0
 
 
 ### Project run on local server
@@ -31,6 +30,21 @@
 
 
 ### Example
+**POST-request: Create a new short link.**
+_POST .../api/id_
+```
+    {
+        "url": "https://github.com/Zorik28/yacut/blob/master/README.md"
+    }
+```
+
+**Response:**
+```
+    {
+        "short_link": "http://127.0.0.1:5000/NuTJNQ",
+        "url": "https://github.com/Zorik28/yacut/blob/master/README.md"
+    }
+```
 
 
 #### Author
