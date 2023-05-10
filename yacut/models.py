@@ -11,7 +11,7 @@ class URLMap(db.Model):
     short = db.Column(db.String(16), unique=True, nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
 
-    def to_serializer(self):
+    def to_serializer(self) -> dict:
         return dict(
             url=self.original,
             short_link=url_for(

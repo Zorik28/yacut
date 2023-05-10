@@ -10,7 +10,7 @@ from .views import get_unique_short_id, is_unique
 
 
 @app.route('/api/id/<string:short_id>/', methods=['GET'])
-def get_original_url(short_id):
+def get_original_url(short_id: str):
     """Retrieves original url."""
     urlmap = URLMap.query.filter_by(short=short_id).first()
     if urlmap is None:
@@ -20,10 +20,10 @@ def get_original_url(short_id):
 
 @app.route('/api/id/', methods=['POST'])
 def create_custom_id():
-    if request.get_json() is None:
+    """Creates a new unique short url."""
+    data = request.get_json()       # Getting data from a query as a dictionary
+    if data is None:
         raise InvalidAPIUsage('Отсутствует тело запроса')
-    # Getting data from a query as a dictionary
-    data = request.get_json()
     if data.get('url') is None:
         raise InvalidAPIUsage('"url" является обязательным полем!')
     short_id = data.get('custom_id')

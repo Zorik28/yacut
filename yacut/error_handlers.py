@@ -4,7 +4,9 @@ from . import app, db
 
 
 class InvalidAPIUsage(Exception):
+    """Custom exception class to handle all errors."""
 
+    # Default error
     status_code = 400
 
     def __init__(self, message: str, status_code: int = status_code):

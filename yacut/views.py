@@ -26,17 +26,17 @@ def is_unique(custom_id: str) -> bool:
 
 @app.route('/', methods=['GET', 'POST'])
 def index_view():
+    """View function for main page."""
     form = URLMapForm()
     if form.validate_on_submit():
-        if not form.custom_id.data:
+        short = form.custom_id.data
+        if not short:
             # When user left the custom_id field empty
-            form.custom_id.data = get_unique_short_id()
-        if not is_unique(form.custom_id.data):
-            flash(f'Имя {form.custom_id.data} уже занято!')
+            short = get_unique_short_id()
+        if not is_unique(short):
+            flash(f'Имя {short} уже занято!')
             return render_template('index.html', form=form)
-        url = URLMap(
-            original=form.original_link.data, short=form.custom_id.data
-        )
+        url = URLMap(original=form.original_link.data, short=short)
         db.session.add(url)
         db.session.commit()
         return render_template('index.html', form=form, url=url)
