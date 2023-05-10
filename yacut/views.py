@@ -22,6 +22,7 @@ def is_unique(custom_id: str) -> bool:
     """Сheck for uniqueness."""
     if not URLMap.query.filter_by(short=custom_id).first():
         return True
+    return False
 
 
 @app.route('/', methods=['GET', 'POST'])

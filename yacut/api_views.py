@@ -1,9 +1,10 @@
 import re
+from http import HTTPStatus
 
 from flask import jsonify, request
 
 from . import app, db
-from .constants import ONLY_NUMBERS_AND_ENGLISH
+from .constants import MAX_LENGTH, ONLY_NUMBERS_AND_ENGLISH
 from .error_handlers import InvalidAPIUsage
 from .models import URLMap
 from .views import get_unique_short_id, is_unique
@@ -14,8 +15,8 @@ def get_original_url(short_id: str):
     """Retrieves original url."""
     urlmap = URLMap.query.filter_by(short=short_id).first()
     if urlmap is None:
-        raise InvalidAPIUsage('Указанный id не найден', 404)
-    return jsonify({'url': urlmap.original}), 200
+        raise InvalidAPIUsage('Указанный id не найден', HTTPStatus.NOT_FOUND)
+    return jsonify({'url': urlmap.original}), HTTPStatus.OK
 
 
 @app.route('/api/id/', methods=['POST'])
@@ -29,11 +30,14 @@ def create_custom_id():
     short_id = data.get('custom_id')
     if short_id in [None, "", '']:
         short_id = get_unique_short_id()
-    if not re.search(ONLY_NUMBERS_AND_ENGLISH, short_id) or len(short_id) > 16:
+    if (
+        not re.search(ONLY_NUMBERS_AND_ENGLISH, short_id) or
+        len(short_id) > MAX_LENGTH
+    ):
         raise InvalidAPIUsage('Указано недопустимое имя для короткой ссылки')
     if not is_unique(short_id):
         raise InvalidAPIUsage(f'Имя "{short_id}" уже занято.')
     urlmap = URLMap(original=data.get('url'), short=short_id)
     db.session.add(urlmap)
     db.session.commit()
-    return jsonify(urlmap.to_serializer()), 201
+    return jsonify(urlmap.to_serializer()), HTTPStatus.CREATED
