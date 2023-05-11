@@ -4,7 +4,7 @@ from http import HTTPStatus
 from flask import jsonify, request
 
 from . import app, db
-from .constants import MAX_LENGTH, ONLY_NUMBERS_AND_ENGLISH
+from .constants import SHORT_ID_MAX_LENGTH, ONLY_NUMBERS_AND_ENGLISH
 from .error_handlers import InvalidAPIUsage
 from .models import URLMap
 from .views import get_unique_short_id, is_unique
@@ -28,11 +28,11 @@ def create_custom_id():
     if data.get('url') is None:
         raise InvalidAPIUsage('"url" является обязательным полем!')
     short_id = data.get('custom_id')
-    if short_id in [None, "", '']:
+    if short_id in [None, '']:
         short_id = get_unique_short_id()
     if (
         not re.search(ONLY_NUMBERS_AND_ENGLISH, short_id) or
-        len(short_id) > MAX_LENGTH
+        len(short_id) > SHORT_ID_MAX_LENGTH
     ):
         raise InvalidAPIUsage('Указано недопустимое имя для короткой ссылки')
     if not is_unique(short_id):
