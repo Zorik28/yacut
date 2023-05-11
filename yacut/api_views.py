@@ -28,7 +28,7 @@ def create_custom_id():
     if data.get('url') is None:
         raise InvalidAPIUsage('"url" является обязательным полем!')
     short_id = data.get('custom_id')
-    if short_id in [None, '']:
+    if short_id in (None, ''):
         short_id = get_unique_short_id()
     if (
         not re.search(ONLY_NUMBERS_AND_ENGLISH, short_id) or
