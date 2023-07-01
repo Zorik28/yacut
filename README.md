@@ -29,7 +29,7 @@ Just cut them off!
    ```>>> from yacut import db```    
    ```>>> db.create_all()```
 
-5. Run tha YaCut!
+5. Run the YaCut!
 ```flask run```
 
 
